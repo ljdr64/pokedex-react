@@ -36,16 +36,23 @@ export default function Card({ card }) {
   }, [itemPokemon.id]);
 
   const imageSrc = itemPokemon.sprites?.official_artwork;
+  let pokeId =
+    itemPokemon.id < 1000
+      ? (itemPokemon.id + 1000).toString().slice(-3)
+      : itemPokemon.id;
 
   return (
     <div className={css.card}>
       <img className={css.img_poke} src={imageSrc} alt="pokemon" />
       <div className={`bg-${especiePokemon?.color} ${css.sub_card}`}>
-        <strong className={css.id_card}> 011 </strong>
-        <strong className={css.name_card}> name </strong>
-        <h4 className={css.altura_poke}> 10cm </h4>
-        <h4 className={css.peso_poke}> peso </h4>
-        <h4 className={css.habitat_poke}> habitat </h4>
+        <strong className={css.id_card}> {pokeId} </strong>
+        <strong className={css.name_card}> {itemPokemon.name} </strong>
+        <h4 className={css.altura_poke}>Altura: {itemPokemon.height / 10} m</h4>
+        <h4 className={css.peso_poke}> Peso: {itemPokemon.weight / 10} kg </h4>
+        <h4 className={css.habitat_poke}>
+          {' '}
+          Habitat: {especiePokemon.habitat}{' '}
+        </h4>
 
         <div className={css.div_stats}>
           {itemPokemon.stats &&
