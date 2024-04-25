@@ -7,3 +7,58 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+// POR COLORES CARD
+.bg-green {
+  background: linear-gradient(rgba(0, 128, 0, 0.5), rgba(155, 139, 34, 0.5));
+  /* Verde y verde bosque */
+}
+
+.bg-red {
+  background: linear-gradient(rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+}
+
+.bg-blue {
+  background: linear-gradient(rgba(0, 0, 255, 0.5), rgba(0, 128, 255, 0.5));
+  /* Azul y azul celeste */
+}
+
+.bg-yellow {
+  background: linear-gradient(rgba(255, 255, 0, 0.5), rgba(255, 165, 0, 0.5));
+  /* Amarillo y naranja */
+}
+
+.bg-brown {
+  background: linear-gradient(rgba(139, 69, 19, 0.5), rgba(255, 82, 45, 0.5));
+  /* Marrón oscuro y marrón claro */
+}
+
+.bg-purple {
+  background: linear-gradient(rgba(110, 0, 128, 0.5), rgba(255, 0, 211, 0.5));
+  /* Púrpura y violeta */
+}
+
+.bg-black {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(120, 64, 64, 0.5));
+  /* Negro y gris oscuro */
+}
+
+.bg-pink {
+  background: linear-gradient(rgba(255, 192, 203, 0.5), rgba(255, 105, 180, 0.5));
+  /* Rosa claro y rosa oscuro */
+}
+
+.bg-gray {
+  background: linear-gradient(rgba(128, 128, 128, 0.5), rgba(169, 169, 169, 0.5));
+  /* Gris y gris claro */
+}
+
+.bg-white {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(100, 248, 255, 0.5));
+  /* Blanco y blanco hueso */
+}
+
+.bg-all {
+  background: linear-gradient(rgba(153, 153, 153, 0.5), rgba(211, 211, 211, 0.5));
+  /* Gris medio y gris claro */
+}
