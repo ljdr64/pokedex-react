@@ -22,14 +22,14 @@ export default function Card({ card }) {
   const imageSrc = itemPokemon.sprites?.official_artwork;
 
   return (
-    <div>
-      <img src={imageSrc} alt="pokemon" />
-      <div>
-        <strong> 011 </strong>
-        <strong> name </strong>
-        <h4> 10cm </h4>
-        <h4> peso </h4>
-        <h4> habitat </h4>
+    <div className={css.card}>
+      <img className={css.img_poke} src={imageSrc} alt="pokemon" />
+      <div className={css.sub_card}>
+        <strong className={css.id_card}> 011 </strong>
+        <strong className={css.name_card}> name </strong>
+        <h4 className={css.altura_poke}> 10cm </h4>
+        <h4 className={css.peso_poke}> peso </h4>
+        <h4 className={css.habitat_poke}> habitat </h4>
       </div>
     </div>
   );

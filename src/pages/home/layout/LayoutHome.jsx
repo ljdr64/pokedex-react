@@ -22,7 +22,7 @@ export default function LayoutHome() {
     <div className={css.layout}>
       <Header />
 
-      <div>
+      <div className={css.card_content}>
         {arrayPokemon.map((card, index) => {
           return <Card key={index} card={card} />;
         })}
