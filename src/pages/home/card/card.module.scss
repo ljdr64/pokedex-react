@@ -44,7 +44,7 @@
   }
 
   .altura_poke {
-    margin-top: 20px;
+    margin-top: 2px;
     font-size: 0.75rem;
     text-transform: capitalize;
     display: block;
@@ -52,7 +52,7 @@
   }
 
   .peso_poke {
-    margin-top: 20px;
+    margin-top: 2px;
     font-size: 0.75rem;
     text-transform: capitalize;
     display: block;
@@ -60,7 +60,7 @@
   }
 
   .habitat_poke {
-    margin-top: 20px;
+    margin-top: 2px;
     font-size: 0.75rem;
     text-transform: capitalize;
     display: block;
@@ -85,11 +85,28 @@
 
       .numero {
         width: 22px;
-        text-transform: capitalize;
+        text-align: end;
         color: #484848;
       }
 
     }
   }
 
+  .div_type_color {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+
+    .color_type {
+      border: 1px solid #424242;
+      border-radius: 4px;
+      text-align: center;
+      height: 20px;
+      line-height: 17px;
+      width: 50px;
+      color: white;
+      text-shadow:
+        2px 2px 4px black;
+    }
+  }
 }

@@ -35,7 +35,6 @@ export default function Card({ card }) {
     dataEspecie();
   }, [itemPokemon.id]);
 
-  if (itemPokemon) console.log(itemPokemon);
   const imageSrc = itemPokemon.sprites?.official_artwork;
 
   return (
@@ -57,6 +56,17 @@ export default function Card({ card }) {
                 <span className={css.numero}>{value}</span>
               </h6>
             ))}
+        </div>
+
+        <div className={css.div_type_color}>
+          {itemPokemon.types &&
+            itemPokemon.types.map((type, index) => {
+              return (
+                <h6 key={index} className={`color-${type} ${css.color_type}`}>
+                  {type}
+                </h6>
+              );
+            })}
         </div>
       </div>
     </div>

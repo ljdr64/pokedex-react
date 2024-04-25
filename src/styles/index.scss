@@ -62,3 +62,95 @@
   background: linear-gradient(rgba(153, 153, 153, 0.5), rgba(211, 211, 211, 0.5));
   /* Gris medio y gris claro */
 }
+
+// POR TIPOS CARD
+
+.color-fire {
+  background-color: red;
+  background: linear-gradient(to right, red, orange);
+}
+
+.color-water {
+  background-color: blue;
+  background: linear-gradient(to right, blue, lightblue);
+}
+
+.color-grass {
+  background-color: green;
+  background: linear-gradient(to right, green, lime);
+}
+
+.color-electric {
+  background-color: yellow;
+  background: linear-gradient(to right, yellow, lightyellow);
+}
+
+.color-ice {
+  background-color: cyan;
+  background: linear-gradient(to right, cyan, lightcyan);
+}
+
+.color-ground {
+  background-color: brown;
+  background: linear-gradient(to right, brown, sandybrown);
+}
+
+.color-flying {
+  background-color: skyblue;
+  background: linear-gradient(to right, skyblue, lightsteelblue);
+}
+
+.color-psychic {
+  background-color: fuchsia;
+  background: linear-gradient(to right, fuchsia, pink);
+}
+
+.color-poison {
+  background-color: purple;
+  background: linear-gradient(to right, purple, violet);
+}
+
+.color-rock {
+  background-color: gray;
+  background: linear-gradient(to right, gray, darkgray);
+}
+
+.color-fighting {
+  background-color: darkred;
+  background: linear-gradient(to right, darkred, indianred);
+}
+
+.color-ghost {
+  background-color: indigo;
+  background: linear-gradient(to right, indigo, darkslateblue);
+}
+
+.color-dragon {
+  background-color: darkblue;
+  background: linear-gradient(to right, darkblue, lightblue);
+}
+
+.color-dark {
+  background-color: black;
+  background: linear-gradient(to right, black, dimgray);
+}
+
+.color-fairy {
+  background-color: lightpink;
+  background: linear-gradient(to right, lightpink, pink);
+}
+
+.color-steel {
+  background-color: silver;
+  background: linear-gradient(to right, silver, lightgray);
+}
+
+.color-bug {
+  background-color: olive;
+  background: linear-gradient(to right, olive, yellowgreen);
+}
+
+.color-normal {
+  background-color: lightgray;
+  background: linear-gradient(to right, lightgray, gray);
+}
