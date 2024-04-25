@@ -36,19 +36,20 @@ export default function Card({ card }) {
     dataEspecie();
   }, [itemPokemon.id]);
 
+  let relatedImageUrls = {};
+
   if (itemPokemon && especiePokemon) {
-    const evolutionChain = especiePokemon.evolution_chain || null;
+    const evolutionChain = especiePokemon.evolution_chain || {};
     if (evolutionChain) {
       const pokemonName = itemPokemon.name;
       const pokemonId = itemPokemon.id;
       const position = findEvolutionPosition(pokemonName, evolutionChain);
 
-      const relatedImageUrls = getRelatedPokemonImages(
+      relatedImageUrls = getRelatedPokemonImages(
         pokemonId,
         position,
         evolutionChain
       );
-      console.log(pokemonName, relatedImageUrls);
     }
   }
 
@@ -66,10 +67,7 @@ export default function Card({ card }) {
         <strong className={css.name_card}> {itemPokemon.name} </strong>
         <h4 className={css.altura_poke}>Altura: {itemPokemon.height / 10} m</h4>
         <h4 className={css.peso_poke}> Peso: {itemPokemon.weight / 10} kg </h4>
-        <h4 className={css.habitat_poke}>
-          {' '}
-          Habitat: {especiePokemon.habitat}{' '}
-        </h4>
+        <h4 className={css.habitat_poke}>Habitat: {especiePokemon.habitat}</h4>
 
         <div className={css.div_stats}>
           {itemPokemon.stats &&
@@ -91,6 +89,15 @@ export default function Card({ card }) {
                 </h6>
               );
             })}
+        </div>
+
+        <div className={css.div_evolution}>
+          {Object.entries(relatedImageUrls).map(([position, [url, name]]) => (
+            <div className={css.item_evo} key={position}>
+              <img src={url} alt={`evo-${name}`} className={css.img} />
+              <h6 className={css.evo_name}>{name}</h6>
+            </div>
+          ))}
         </div>
       </div>
     </div>
