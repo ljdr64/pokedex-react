@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import css from './card.module.scss';
 import { URL_ESPECIES } from '../../../api/apiRest';
 import axios from 'axios';
+import { getRelatedPokemonImages, findEvolutionPosition } from './evolution';
 
 export default function Card({ card }) {
   const [itemPokemon, setItemPokemon] = useState({});
@@ -34,6 +35,22 @@ export default function Card({ card }) {
 
     dataEspecie();
   }, [itemPokemon.id]);
+
+  if (itemPokemon && especiePokemon) {
+    const evolutionChain = especiePokemon.evolution_chain || null;
+    if (evolutionChain) {
+      const pokemonName = itemPokemon.name;
+      const pokemonId = itemPokemon.id;
+      const position = findEvolutionPosition(pokemonName, evolutionChain);
+
+      const relatedImageUrls = getRelatedPokemonImages(
+        pokemonId,
+        position,
+        evolutionChain
+      );
+      console.log(pokemonName, relatedImageUrls);
+    }
+  }
 
   const imageSrc = itemPokemon.sprites?.official_artwork;
   let pokeId =
