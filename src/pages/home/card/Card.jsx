@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import css from './card.module.scss';
-import { URL_ESPECIES } from '../../../api/apiRest';
+import { URL_POKEMON, URL_ESPECIES } from '../../../api/apiRest';
 import axios from 'axios';
-import { getRelatedPokemonImages, findEvolutionPosition } from './evolution';
 
 export default function Card({ card }) {
   const [itemPokemon, setItemPokemon] = useState({});
   const [especiePokemon, setEspeciePokemon] = useState({});
+  const [baseEvolution, setBaseEvolution] = useState({});
+  const [firstEvolution, setFirstEvolution] = useState({});
+  const [secondEvolution, setSecondEvolution] = useState({});
 
   useEffect(() => {
     const dataPokemon = async () => {
@@ -36,22 +38,38 @@ export default function Card({ card }) {
     dataEspecie();
   }, [itemPokemon.id]);
 
-  let relatedImageUrls = {};
+  useEffect(() => {
+    const fetchEvolutions = async () => {
+      try {
+        if (especiePokemon.evolution_chain) {
+          if (especiePokemon.evolution_chain.base_evolution) {
+            const response = await axios.get(
+              `${URL_POKEMON}${especiePokemon.evolution_chain.base_evolution}`
+            );
+            setBaseEvolution(response.data);
+          }
 
-  if (itemPokemon && especiePokemon) {
-    const evolutionChain = especiePokemon.evolution_chain || {};
-    if (evolutionChain) {
-      const pokemonName = itemPokemon.name;
-      const pokemonId = itemPokemon.id;
-      const position = findEvolutionPosition(pokemonName, evolutionChain);
+          if (especiePokemon.evolution_chain.first_evolution) {
+            const response = await axios.get(
+              `${URL_POKEMON}${especiePokemon.evolution_chain.first_evolution}`
+            );
+            setFirstEvolution(response.data);
+          }
 
-      relatedImageUrls = getRelatedPokemonImages(
-        pokemonId,
-        position,
-        evolutionChain
-      );
-    }
-  }
+          if (especiePokemon.evolution_chain.second_evolution) {
+            const response = await axios.get(
+              `${URL_POKEMON}${especiePokemon.evolution_chain.second_evolution}`
+            );
+            setSecondEvolution(response.data);
+          }
+        }
+      } catch (error) {
+        console.error('Error al cargar datos del Pokémon:', error);
+      }
+    };
+
+    fetchEvolutions();
+  }, [especiePokemon]);
 
   const imageSrc = itemPokemon.sprites?.official_artwork;
   let pokeId =
@@ -92,12 +110,36 @@ export default function Card({ card }) {
         </div>
 
         <div className={css.div_evolution}>
-          {Object.entries(relatedImageUrls).map(([position, [url, name]]) => (
-            <div className={css.item_evo} key={position}>
-              <img src={url} alt={`evo-${name}`} className={css.img} />
-              <h6 className={css.evo_name}>{name}</h6>
+          {baseEvolution.sprites?.official_artwork && (
+            <div className={css.item_evo}>
+              <img
+                src={baseEvolution.sprites?.official_artwork}
+                alt="evo"
+                className={css.img}
+              />
+              <h6 className={css.evo_name}>{baseEvolution.name}</h6>
             </div>
-          ))}
+          )}
+          {firstEvolution.sprites?.official_artwork && (
+            <div className={css.item_evo}>
+              <img
+                src={firstEvolution.sprites?.official_artwork}
+                alt="evo"
+                className={css.img}
+              />
+              <h6 className={css.evo_name}>{firstEvolution.name}</h6>
+            </div>
+          )}
+          {secondEvolution.sprites?.official_artwork && (
+            <div className={css.item_evo}>
+              <img
+                src={secondEvolution.sprites?.official_artwork}
+                alt="evo"
+                className={css.img}
+              />
+              <h6 className={css.evo_name}>{secondEvolution.name}</h6>
+            </div>
+          )}
         </div>
       </div>
     </div>
