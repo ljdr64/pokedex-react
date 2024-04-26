@@ -42,34 +42,46 @@ export default function Card({ card }) {
     const fetchEvolutions = async () => {
       try {
         if (especiePokemon.evolution_chain) {
-          if (especiePokemon.evolution_chain.base_evolution) {
+          const baseEvolutionId = especiePokemon.evolution_chain.base_evolution;
+          const firstEvolutionId =
+            especiePokemon.evolution_chain.first_evolution;
+          const secondEvolutionId =
+            especiePokemon.evolution_chain.second_evolution;
+
+          if (baseEvolutionId) {
             const response = await axios.get(
-              `${URL_POKEMON}${especiePokemon.evolution_chain.base_evolution}`
+              `${URL_POKEMON}${baseEvolutionId}`
             );
             setBaseEvolution(response.data);
           }
 
-          if (especiePokemon.evolution_chain.first_evolution) {
+          if (firstEvolutionId) {
             const response = await axios.get(
-              `${URL_POKEMON}${especiePokemon.evolution_chain.first_evolution}`
+              `${URL_POKEMON}${firstEvolutionId}`
             );
             setFirstEvolution(response.data);
           }
 
-          if (especiePokemon.evolution_chain.second_evolution) {
+          if (secondEvolutionId) {
             const response = await axios.get(
-              `${URL_POKEMON}${especiePokemon.evolution_chain.second_evolution}`
+              `${URL_POKEMON}${secondEvolutionId}`
             );
             setSecondEvolution(response.data);
           }
         }
       } catch (error) {
-        console.error('Error al cargar datos del Pokémon:', error);
+        console.error(error);
       }
     };
 
-    fetchEvolutions();
+    if (especiePokemon.evolution_chain) {
+      fetchEvolutions();
+    }
   }, [especiePokemon]);
+
+  const baseImageSrc = baseEvolution.sprites?.official_artwork;
+  const firstImageSrc = firstEvolution.sprites?.official_artwork;
+  const secondImageSrc = secondEvolution.sprites?.official_artwork;
 
   const imageSrc = itemPokemon.sprites?.official_artwork;
   let pokeId =
@@ -110,33 +122,21 @@ export default function Card({ card }) {
         </div>
 
         <div className={css.div_evolution}>
-          {baseEvolution.sprites?.official_artwork && (
+          {baseImageSrc && (
             <div className={css.item_evo}>
-              <img
-                src={baseEvolution.sprites?.official_artwork}
-                alt="evo"
-                className={css.img}
-              />
+              <img src={baseImageSrc} alt="evo" className={css.img} />
               <h6 className={css.evo_name}>{baseEvolution.name}</h6>
             </div>
           )}
-          {firstEvolution.sprites?.official_artwork && (
+          {firstImageSrc && (
             <div className={css.item_evo}>
-              <img
-                src={firstEvolution.sprites?.official_artwork}
-                alt="evo"
-                className={css.img}
-              />
+              <img src={firstImageSrc} alt="evo" className={css.img} />
               <h6 className={css.evo_name}>{firstEvolution.name}</h6>
             </div>
           )}
-          {secondEvolution.sprites?.official_artwork && (
+          {secondImageSrc && (
             <div className={css.item_evo}>
-              <img
-                src={secondEvolution.sprites?.official_artwork}
-                alt="evo"
-                className={css.img}
-              />
+              <img src={secondImageSrc} alt="evo" className={css.img} />
               <h6 className={css.evo_name}>{secondEvolution.name}</h6>
             </div>
           )}
