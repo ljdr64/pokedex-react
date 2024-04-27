@@ -60,6 +60,8 @@ export default function Card({ card }) {
               `${URL_POKEMON}${firstEvolutionId}`
             );
             setFirstEvolution(response.data);
+          } else {
+            setFirstEvolution({});
           }
 
           if (secondEvolutionId) {
@@ -67,6 +69,8 @@ export default function Card({ card }) {
               `${URL_POKEMON}${secondEvolutionId}`
             );
             setSecondEvolution(response.data);
+          } else {
+            setSecondEvolution({});
           }
         }
       } catch (error) {
