@@ -56,11 +56,11 @@ export default function LayoutHome() {
           </span>
           <span className={css.item}> {xpage} </span>
           <span className={css.item}> DE </span>
-          <span className={css.item}> {Math.round(total / 15)}</span>
+          <span className={css.item}> {Math.round(total / 15 + 1)}</span>
           <span
             className={css.item_derecho}
             onClick={() => {
-              if (xpage === 67) {
+              if (xpage === 69) {
                 return console.log('Es el ultimo');
               } else {
                 setXpage(xpage + 1);
