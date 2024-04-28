@@ -8,12 +8,13 @@ import { URL_POKEMON } from '../../../api/apiRest';
 
 export default function LayoutHome() {
   const [arrayPokemon, setArrayPokemon] = useState([]);
-  const [globalPokemon, setGlobalPokemon] = useState(1025);
+  const [globalPokemon, setGlobalPokemon] = useState([]);
   const [xpage, setXpage] = useState(1);
+  const [search, setSearch] = useState('');
+  const limit = 20;
 
   useEffect(() => {
     const api = async () => {
-      const limit = 15;
       const xp = (xpage - 1) * limit;
 
       const apiPoke = await axios.get(
@@ -25,20 +26,36 @@ export default function LayoutHome() {
 
     api();
     getGlobalPokemons();
-  }, [xpage]);
+  }, [xpage, search]);
 
   const getGlobalPokemons = async () => {
-    const res = await axios.get(`${URL_POKEMON}`);
-    setGlobalPokemon(res.data.count);
+    const res = await axios.get(`${URL_POKEMON}?offset=0&limit=1025`);
+
+    const promises = res.data.results.map((pokemon) => {
+      return pokemon;
+    });
+
+    const results = await Promise.all(promises);
+    setGlobalPokemon(results);
   };
 
-  let total = 1025;
+  const total = globalPokemon?.length;
 
-  if (globalPokemon) total = globalPokemon;
+  const filterPokemons =
+    search?.length > 0
+      ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
+      : arrayPokemon;
+  console.log(filterPokemons);
+
+  const obtenerSearch = (e) => {
+    const texto = e.toLowerCase();
+    setSearch(texto);
+    setXpage(1);
+  };
 
   return (
     <div className={css.layout}>
-      <Header />
+      <Header obtenerSearch={obtenerSearch} />
 
       <section className={css.section_pagination}>
         <div className={css.div_pagination}>
@@ -56,7 +73,7 @@ export default function LayoutHome() {
           </span>
           <span className={css.item}> {xpage} </span>
           <span className={css.item}> DE </span>
-          <span className={css.item}> {Math.round(total / 15 + 1)}</span>
+          <span className={css.item}> {Math.round(total / limit + 1)}</span>
           <span
             className={css.item_derecho}
             onClick={() => {

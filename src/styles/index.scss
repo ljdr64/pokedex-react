@@ -8,6 +8,21 @@
   box-sizing: border-box;
 }
 
+body {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(10, 117, 215);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #afaeae;
+  }
+}
+
 // POR COLORES CARD
 .bg-green {
   background: linear-gradient(rgba(0, 128, 0, 0.5), rgba(155, 139, 34, 0.5));
