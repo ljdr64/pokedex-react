@@ -52,15 +52,15 @@ export default function Card({ card }) {
 
   return (
     <div className={css.card}>
-      {itemPokemon.sprites?.official_artwork && (
+      {itemPokemon.id && (
         <img
           className={css.img_poke}
-          src={itemPokemon.sprites?.official_artwork}
+          src={urlImg(itemPokemon.id)}
           alt="pokemon"
         />
       )}
       <div className={`bg-${especiePokemon?.color} ${css.sub_card}`}>
-        <strong className={css.id_card}> {pokeId} </strong>
+        <strong className={css.id_card}>#{pokeId} </strong>
         <strong className={css.name_card}> {itemPokemon.name} </strong>
         <h4 className={css.altura_poke}>Altura: {itemPokemon.height / 10} m</h4>
         <h4 className={css.peso_poke}> Peso: {itemPokemon.weight / 10} kg </h4>

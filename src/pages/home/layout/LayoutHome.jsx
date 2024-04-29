@@ -39,19 +39,29 @@ export default function LayoutHome() {
     setGlobalPokemon(results);
   };
 
-  const total = globalPokemon?.length;
+  let total = globalPokemon?.length;
+  const xp = (xpage - 1) * limit;
 
-  const filterPokemons =
-    search?.length > 0
-      ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
-      : arrayPokemon;
-  console.log(filterPokemons);
+  let filterPokemons = arrayPokemon;
+  if (search?.length > 0) {
+    filterPokemons = globalPokemon?.filter((pokemon) =>
+      pokemon?.name?.includes(search)
+    );
+    total = filterPokemons?.length;
+
+    filterPokemons = filterPokemons.slice(xp, xp + limit);
+  } else {
+    arrayPokemon;
+    total = globalPokemon?.length;
+  }
 
   const obtenerSearch = (e) => {
     const texto = e.toLowerCase();
     setSearch(texto);
     setXpage(1);
   };
+
+  const numberTotalPages = Math.ceil(total / limit) || 1;
 
   return (
     <div className={css.layout}>
@@ -73,11 +83,11 @@ export default function LayoutHome() {
           </span>
           <span className={css.item}> {xpage} </span>
           <span className={css.item}> DE </span>
-          <span className={css.item}> {Math.round(total / limit + 1)}</span>
+          <span className={css.item}> {numberTotalPages}</span>
           <span
             className={css.item_derecho}
             onClick={() => {
-              if (xpage === 69) {
+              if (xpage >= numberTotalPages) {
                 return console.log('Es el ultimo');
               } else {
                 setXpage(xpage + 1);
@@ -90,7 +100,7 @@ export default function LayoutHome() {
       </section>
 
       <div className={css.card_content}>
-        {arrayPokemon.map((card, index) => {
+        {filterPokemons.map((card, index) => {
           return <Card key={index} card={card} />;
         })}
       </div>
