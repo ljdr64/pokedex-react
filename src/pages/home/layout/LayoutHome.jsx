@@ -11,7 +11,14 @@ export default function LayoutHome() {
   const [globalPokemon, setGlobalPokemon] = useState([]);
   const [xpage, setXpage] = useState(1);
   const [search, setSearch] = useState('');
+  const [pokemonBuscado, setPokemonBuscado] = useState('');
   const limit = 20;
+
+  const manejarClick = (nombrePokemon) => {
+    setPokemonBuscado(nombrePokemon);
+    setSearch(nombrePokemon);
+    setXpage(1);
+  };
 
   useEffect(() => {
     const api = async () => {
@@ -101,7 +108,7 @@ export default function LayoutHome() {
 
       <div className={css.card_content}>
         {filterPokemons.map((card, index) => {
-          return <Card key={index} card={card} />;
+          return <Card key={index} card={card} onPokemonClick={manejarClick} />;
         })}
       </div>
     </div>

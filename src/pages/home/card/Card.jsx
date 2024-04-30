@@ -3,7 +3,7 @@ import css from './card.module.scss';
 import { URL_POKEMON, URL_ESPECIES } from '../../../api/apiRest';
 import axios from 'axios';
 
-export default function Card({ card }) {
+export default function Card({ card, onPokemonClick }) {
   const [itemPokemon, setItemPokemon] = useState({});
   const [especiePokemon, setEspeciePokemon] = useState({});
   const [evolucion, setEvolucion] = useState({});
@@ -95,6 +95,9 @@ export default function Card({ card }) {
                 src={urlImg(evolucion.base_evolution?.id)}
                 alt="evo"
                 className={css.img}
+                onClick={() => {
+                  onPokemonClick(evolucion.base_evolution?.name);
+                }}
               />
               <h6 className={css.evo_name}>{evolucion.base_evolution?.name}</h6>
             </div>
@@ -105,6 +108,9 @@ export default function Card({ card }) {
                 src={urlImg(evolucion.first_evolution?.id)}
                 alt="evo"
                 className={css.img}
+                onClick={() => {
+                  onPokemonClick(evolucion.first_evolution?.name);
+                }}
               />
               <h6 className={css.evo_name}>
                 {evolucion.first_evolution?.name}
@@ -117,6 +123,9 @@ export default function Card({ card }) {
                 src={urlImg(evolucion.second_evolution?.id)}
                 alt="evo"
                 className={css.img}
+                onClick={() => {
+                  onPokemonClick(evolucion.second_evolution?.name);
+                }}
               />
               <h6 className={css.evo_name}>
                 {evolucion.second_evolution?.name}
