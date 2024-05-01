@@ -11,8 +11,9 @@
     margin: 0 auto;
 
     .div_logo {
-      >img {
+      >a img {
         width: 120px;
+        cursor: pointer;
       }
     }
 
@@ -37,6 +38,7 @@
         display: grid;
         place-items: center;
         color: white;
+        cursor: pointer;
       }
 
       >input {

@@ -11,39 +11,45 @@ export default function LayoutHome() {
   const [globalPokemon, setGlobalPokemon] = useState([]);
   const [xpage, setXpage] = useState(1);
   const [search, setSearch] = useState('');
-  const [pokemonBuscado, setPokemonBuscado] = useState('');
+  const [searchEvo, setSearchEvo] = useState('');
   const limit = 20;
 
   const manejarClick = (nombrePokemon) => {
-    setPokemonBuscado(nombrePokemon);
-    setSearch(nombrePokemon);
-    setXpage(1);
+    obtenerSearchEvo(nombrePokemon);
   };
 
   useEffect(() => {
     const api = async () => {
-      const xp = (xpage - 1) * limit;
+      try {
+        setSearchEvo('');
+        const xp = (xpage - 1) * limit;
 
-      const apiPoke = await axios.get(
-        `${URL_POKEMON}?offset=${xp}&limit=${limit}`
-      );
+        const apiPoke = await axios.get(
+          `${URL_POKEMON}?offset=${xp}&limit=${limit}`
+        );
 
-      setArrayPokemon(apiPoke.data.results);
+        setArrayPokemon(apiPoke.data.results);
+      } catch (error) {
+        console.error(error);
+      }
     };
-
     api();
     getGlobalPokemons();
   }, [xpage, search]);
 
   const getGlobalPokemons = async () => {
-    const res = await axios.get(`${URL_POKEMON}?offset=0&limit=1025`);
+    try {
+      const res = await axios.get(`${URL_POKEMON}?offset=0&limit=1025`);
+      const promises = res.data.results.map((pokemon) => {
+        return pokemon;
+      });
 
-    const promises = res.data.results.map((pokemon) => {
-      return pokemon;
-    });
+      const results = await Promise.all(promises);
 
-    const results = await Promise.all(promises);
-    setGlobalPokemon(results);
+      setGlobalPokemon(results);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   let total = globalPokemon?.length;
@@ -58,7 +64,7 @@ export default function LayoutHome() {
 
     filterPokemons = filterPokemons.slice(xp, xp + limit);
   } else {
-    arrayPokemon;
+    filterPokemons = arrayPokemon;
     total = globalPokemon?.length;
   }
 
@@ -66,9 +72,27 @@ export default function LayoutHome() {
     const texto = e.toLowerCase();
     setSearch(texto);
     setXpage(1);
+    setSearchEvo('');
+  };
+
+  if (searchEvo) {
+    filterPokemons = globalPokemon?.filter((pokemon) => {
+      return pokemon?.name === searchEvo;
+    });
+    total = 1;
+  }
+
+  const obtenerSearchEvo = (e) => {
+    const texto = e.toLowerCase();
+    setSearchEvo(texto);
+    setXpage(1);
   };
 
   const numberTotalPages = Math.ceil(total / limit) || 1;
+
+  const cardContentClass = searchEvo
+    ? css.card_content_special
+    : css.card_content;
 
   return (
     <div className={css.layout}>
@@ -106,7 +130,7 @@ export default function LayoutHome() {
         </div>
       </section>
 
-      <div className={css.card_content}>
+      <div className={cardContentClass}>
         {filterPokemons.map((card, index) => {
           return <Card key={index} card={card} onPokemonClick={manejarClick} />;
         })}
