@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import css from './layout.module.scss';
 import Header from '../header/Header';
 import Card from '../card/Card';
+import Footer from '../footer/Footer';
 import axios from 'axios';
 import * as FaIcons from 'react-icons/fa';
 import { URL_POKEMON } from '../../../api/apiRest';
@@ -135,6 +136,7 @@ export default function LayoutHome() {
           return <Card key={index} card={card} onPokemonClick={manejarClick} />;
         })}
       </div>
+      <Footer />
     </div>
   );
 }

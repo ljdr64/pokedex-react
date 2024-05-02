@@ -1,6 +1,7 @@
 .card_content {
   width: 1400px;
   max-width: calc(100% - 30px);
+  min-height: calc(100vh - 309px);
   margin: 0 auto;
 
   display: grid;
