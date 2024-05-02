@@ -86,10 +86,10 @@ export default function LayoutHome() {
   const obtenerSearchEvo = (e) => {
     const texto = e.toLowerCase();
     setSearchEvo(texto);
-    setXpage(1);
   };
 
   const numberTotalPages = Math.ceil(total / limit) || 1;
+  const numberInitialPage = xpage > numberTotalPages ? 1 : xpage;
 
   const cardContentClass = searchEvo
     ? css.card_content_special
@@ -104,7 +104,7 @@ export default function LayoutHome() {
           <span
             className={css.item_izquierdo}
             onClick={() => {
-              if (xpage === 1) {
+              if (numberInitialPage === 1) {
                 return console.log('No puedo retroceder');
               } else {
                 setXpage(xpage - 1);
@@ -113,7 +113,7 @@ export default function LayoutHome() {
           >
             <FaIcons.FaAngleLeft />
           </span>
-          <span className={css.item}> {xpage} </span>
+          <span className={css.item}> {numberInitialPage} </span>
           <span className={css.item}> DE </span>
           <span className={css.item}> {numberTotalPages}</span>
           <span

@@ -9,6 +9,8 @@
 }
 
 body {
+  user-select: none;
+
   &::-webkit-scrollbar {
     width: 10px;
   }

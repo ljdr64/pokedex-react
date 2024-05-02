@@ -7,14 +7,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 25px;
+  padding-top: 10px;
   padding-bottom: 30px;
 }
 
 .card_content_special {
-  width: 300px;
-  min-width: 300px;
+  width: 270px;
+  min-height: calc(100vh - 309px);
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .section_pagination {
