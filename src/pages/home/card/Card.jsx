@@ -15,7 +15,9 @@ export default function Card({ card, onPokemonClick }) {
   useEffect(() => {
     const dataPokemon = async () => {
       try {
-        const response = await axios.get(`${card.url}`);
+        const lastSlashIndex = card.url.lastIndexOf('/');
+        const idString = card.url.slice(lastSlashIndex + 1);
+        const response = await axios.get(`${URL_POKEMON}${idString}`);
         setItemPokemon(response.data);
       } catch (error) {
         console.error('Error al cargar datos del Pokémon:', error);
