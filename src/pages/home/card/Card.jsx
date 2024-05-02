@@ -48,7 +48,7 @@ export default function Card({ card, onPokemonClick }) {
   }, [card.url, URL_ESPECIES]);
 
   let pokeId =
-    itemPokemon.id < 1000
+    itemPokemon.id < 100
       ? (itemPokemon.id + 1000).toString().slice(-3)
       : itemPokemon.id;
 

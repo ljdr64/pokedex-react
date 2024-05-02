@@ -58,9 +58,19 @@ export default function LayoutHome() {
 
   let filterPokemons = arrayPokemon;
   if (search?.length > 0) {
-    filterPokemons = globalPokemon?.filter((pokemon) =>
-      pokemon?.name?.includes(search)
-    );
+    filterPokemons = globalPokemon?.filter((pokemon) => {
+      const lastSlashIndex = pokemon.url.lastIndexOf('/');
+      const idString = pokemon.url.slice(lastSlashIndex + 1);
+      const pokeId =
+        Number(idString) < 100
+          ? (Number(idString) + 1000).toString().slice(-3)
+          : idString;
+      return (
+        pokemon?.name?.includes(search) ||
+        pokeId.includes(search) ||
+        (search.startsWith('#') && pokeId === search.slice(1))
+      );
+    });
     total = filterPokemons?.length;
 
     filterPokemons = filterPokemons.slice(xp, xp + limit);
