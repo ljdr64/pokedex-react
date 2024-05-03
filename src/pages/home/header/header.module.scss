@@ -11,7 +11,7 @@
     margin: 0 auto;
 
     .div_logo {
-      >a img {
+      > a img {
         width: 120px;
         cursor: pointer;
       }
@@ -27,11 +27,11 @@
       height: 30px;
       box-shadow: 1px 1px 1px #000;
 
-      @media screen and (max-width : 500px) {
+      @media screen and (max-width: 500px) {
         width: 50%;
       }
 
-      >div {
+      > div {
         width: 20%;
         background-color: rgb(31, 134, 237);
         height: 30px;
@@ -41,7 +41,7 @@
         cursor: pointer;
       }
 
-      >input {
+      > input {
         width: 80%;
         padding: 4px 10px;
         height: 30px;

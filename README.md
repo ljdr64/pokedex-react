@@ -9,9 +9,15 @@ PokeInfo-Dex es una aplicación construida con Vite y React, utilizando SCSS par
 ## Características
 
 - **Lista de Pokémon:** Muestra una lista de Pokémon con información básica, como nombre y tipo.
-- **Búsqueda de Pokémon:** Permite buscar Pokémon por nombre o Id.
+- **Búsqueda de Pokémon:** Permite buscar Pokémon por nombre o ID exacto usando un prefijo `#`.
 - **Detalles del Pokémon:** Muestra detalles adicionales, como habilidades, estadísticas y evoluciones.
 - **Estilos SCSS:** Utiliza SCSS para estilos flexibles y reutilizables.
+
+## Ejemplos de Búsqueda
+
+- **Por nombre:** Busca por nombre completo o parcial, como `pikachu`.
+- **Por ID :** Puedes buscar por parte del ID, como `25` para encontrar todos los Pokémon cuyo ID contiene "25".
+- **Por ID exacto con prefijo `#`:** Para buscar un ID exacto, usa el prefijo `#`, como `#025` para encontrar el Pokémon con ID exacto 25.
 
 ## Configuración del Proyecto
 

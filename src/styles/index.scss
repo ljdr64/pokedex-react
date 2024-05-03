@@ -63,22 +63,34 @@ body {
 }
 
 .bg-pink {
-  background: linear-gradient(rgba(255, 192, 203, 0.5), rgba(255, 105, 180, 0.5));
+  background: linear-gradient(
+    rgba(255, 192, 203, 0.5),
+    rgba(255, 105, 180, 0.5)
+  );
   /* Rosa claro y rosa oscuro */
 }
 
 .bg-gray {
-  background: linear-gradient(rgba(128, 128, 128, 0.5), rgba(169, 169, 169, 0.5));
+  background: linear-gradient(
+    rgba(128, 128, 128, 0.5),
+    rgba(169, 169, 169, 0.5)
+  );
   /* Gris y gris claro */
 }
 
 .bg-white {
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(100, 248, 255, 0.5));
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(100, 248, 255, 0.5)
+  );
   /* Blanco y blanco hueso */
 }
 
 .bg-all {
-  background: linear-gradient(rgba(153, 153, 153, 0.5), rgba(211, 211, 211, 0.5));
+  background: linear-gradient(
+    rgba(153, 153, 153, 0.5),
+    rgba(211, 211, 211, 0.5)
+  );
   /* Gris medio y gris claro */
 }
 

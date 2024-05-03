@@ -43,10 +43,10 @@ footer {
   list-style: none;
 
   p {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-size: 1rem;
     font-weight: 500;
-    line-height: 1.6rem
+    line-height: 1.6rem;
   }
 }
 
@@ -62,9 +62,8 @@ footer {
   background-repeat: no-repeat;
 }
 
-@media screen and (max-width : 410px) {
+@media screen and (max-width: 410px) {
   .section_autor__footer {
-
     p {
       font-size: 0.8rem;
     }
@@ -75,7 +74,6 @@ footer {
   }
 
   .section_links__footer {
-
     section {
       font-size: 14px;
       width: 300px;
