@@ -33,12 +33,20 @@ export default function Card({ card, onPokemonClick }) {
         const lastSlashIndex = card.url.lastIndexOf('/');
         const idString = card.url.slice(lastSlashIndex + 1);
         const response = await axios.get(`${URL_ESPECIES}${idString}`);
+
         setEspeciePokemon(response.data);
+        const evolutionChain = response.data.evolution_chain;
 
-        const { base_evolution, first_evolution, second_evolution } =
-          response.data.evolution_chain;
+        if (Array.isArray(evolutionChain) && evolutionChain.length > 0) {
+          const { base_evolution, first_evolution, second_evolution } =
+            evolutionChain[0];
 
-        setEvolucion({ base_evolution, first_evolution, second_evolution });
+          setEvolucion({ base_evolution, first_evolution, second_evolution });
+        } else {
+          console.warn(
+            'La cadena de evolución está vacía o no tiene suficientes datos.'
+          );
+        }
       } catch (error) {
         console.error('Error al cargar datos del Pokémon: ', error);
       }
