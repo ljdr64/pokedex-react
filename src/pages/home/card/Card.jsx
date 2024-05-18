@@ -106,7 +106,7 @@ export default function Card({ card, onPokemonClick }) {
                 alt="evo"
                 className={css.img}
                 onClick={() => {
-                  onPokemonClick(evolucion.base_evolution?.name);
+                  onPokemonClick(evolucion.base_evolution?.id);
                 }}
               />
               <h6 className={css.evo_name}>{evolucion.base_evolution?.name}</h6>
@@ -119,7 +119,7 @@ export default function Card({ card, onPokemonClick }) {
                 alt="evo"
                 className={css.img}
                 onClick={() => {
-                  onPokemonClick(evolucion.first_evolution?.name);
+                  onPokemonClick(evolucion.first_evolution?.id);
                 }}
               />
               <h6 className={css.evo_name}>
@@ -134,7 +134,7 @@ export default function Card({ card, onPokemonClick }) {
                 alt="evo"
                 className={css.img}
                 onClick={() => {
-                  onPokemonClick(evolucion.second_evolution?.name);
+                  onPokemonClick(evolucion.second_evolution?.id);
                 }}
               />
               <h6 className={css.evo_name}>

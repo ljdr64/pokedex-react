@@ -15,8 +15,8 @@ export default function LayoutHome() {
   const [searchEvo, setSearchEvo] = useState('');
   const limit = 20;
 
-  const manejarClick = (nombrePokemon) => {
-    obtenerSearchEvo(nombrePokemon);
+  const manejarClick = (idPokemon) => {
+    obtenerSearchEvo(idPokemon);
   };
 
   useEffect(() => {
@@ -88,14 +88,15 @@ export default function LayoutHome() {
 
   if (searchEvo) {
     filterPokemons = globalPokemon?.filter((pokemon) => {
-      return pokemon?.name === searchEvo;
+      const lastSlashIndex = pokemon?.url.lastIndexOf('/');
+      const idString = pokemon?.url.slice(lastSlashIndex + 1);
+      return Number(idString) === searchEvo;
     });
     total = 1;
   }
 
   const obtenerSearchEvo = (e) => {
-    const texto = e.toLowerCase();
-    setSearchEvo(texto);
+    setSearchEvo(e);
   };
 
   const numberTotalPages = Math.ceil(total / limit) || 1;
