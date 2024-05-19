@@ -20,6 +20,7 @@
 
   .img_poke {
     width: 160px;
+    height: 160px;
     margin: 0 auto;
     z-index: 20;
     transition: all 0.3s ease-in-out;
@@ -132,6 +133,7 @@
     .item_evo {
       > img {
         width: 80px;
+        height: 80px;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
 
