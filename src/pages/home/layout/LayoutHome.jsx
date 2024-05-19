@@ -13,7 +13,12 @@ export default function LayoutHome() {
   const [xpage, setXpage] = useState(1);
   const [search, setSearch] = useState('');
   const [searchEvo, setSearchEvo] = useState('');
+  const [image, setImage] = useState('official-artwork');
   const limit = 20;
+
+  const changeImage = (img) => {
+    setImage(img);
+  };
 
   const manejarClick = (idPokemon) => {
     obtenerSearchEvo(idPokemon);
@@ -108,7 +113,7 @@ export default function LayoutHome() {
 
   return (
     <div className={css.layout}>
-      <Header obtenerSearch={obtenerSearch} />
+      <Header obtenerSearch={obtenerSearch} changeImage={changeImage} />
 
       <section className={css.section_pagination}>
         <div className={css.div_pagination}>
@@ -143,9 +148,17 @@ export default function LayoutHome() {
       </section>
 
       <div className={cardContentClass}>
-        {filterPokemons.map((card, index) => {
-          return <Card key={index} card={card} onPokemonClick={manejarClick} />;
-        })}
+        {image &&
+          filterPokemons.map((card, index) => {
+            return (
+              <Card
+                key={index}
+                card={card}
+                image={image}
+                onPokemonClick={manejarClick}
+              />
+            );
+          })}
       </div>
       <Footer />
     </div>

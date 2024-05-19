@@ -3,7 +3,7 @@ import * as FaIcons from 'react-icons/fa';
 import css from './header.module.scss';
 import logo from '../../../assets/pokemon.png';
 
-export default function Header({ obtenerSearch }) {
+export default function Header({ obtenerSearch, changeImage }) {
   const inputRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,9 +33,13 @@ export default function Header({ obtenerSearch }) {
                 <button onClick={toggleMenu}>Imagenes</button>
                 {menuOpen && (
                   <ul className={css.menuItems}>
-                    <li>official-artwork</li>
-                    <li>home</li>
-                    <li>dream-world</li>
+                    <li onClick={() => changeImage('official-artwork')}>
+                      official-artwork
+                    </li>
+                    <li onClick={() => changeImage('home')}>home</li>
+                    <li onClick={() => changeImage('dream-world')}>
+                      dream-world
+                    </li>
                   </ul>
                 )}
               </div>
@@ -56,9 +60,13 @@ export default function Header({ obtenerSearch }) {
               <button onClick={toggleMenu}>Imagenes</button>
               {menuOpen && (
                 <ul className={css.menuItems}>
-                  <li>official-artwork</li>
-                  <li>home</li>
-                  <li>dream-world</li>
+                  <li onClick={() => changeImage('official-artwork')}>
+                    official-artwork
+                  </li>
+                  <li onClick={() => changeImage('home')}>home</li>
+                  <li onClick={() => changeImage('dream-world')}>
+                    dream-world
+                  </li>
                 </ul>
               )}
             </div>

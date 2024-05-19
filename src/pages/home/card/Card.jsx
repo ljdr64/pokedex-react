@@ -3,12 +3,20 @@ import css from './card.module.scss';
 import { URL_POKEMON, URL_ESPECIES } from '../../../api/apiRest';
 import axios from 'axios';
 
-export default function Card({ card, onPokemonClick }) {
+export default function Card({ card, image, onPokemonClick }) {
   const [itemPokemon, setItemPokemon] = useState({});
   const [especiePokemon, setEspeciePokemon] = useState({});
   const [evolucion, setEvolucion] = useState({});
 
   const urlImg = (numImg) => {
+    if (image === 'official-artwork' || image === 'home') {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/${image}/${numImg}.png`;
+    }
+    if (image === 'dream-world') {
+      return numImg < 650
+        ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/${image}/${numImg}.svg`
+        : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${numImg}.png`;
+    }
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${numImg}.png`;
   };
 
