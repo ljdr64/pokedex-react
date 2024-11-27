@@ -1,0 +1,108 @@
+@keyframes skeleton-rotation {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.skeleton_card {
+  position: relative;
+  width: 100%;
+  height: 490px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+
+    >img {
+      margin-top: -20px;
+      transform: scale(1.15);
+      transition-duration: 300ms;
+      filter: drop-shadow(1px 3px 0px black);
+    }
+  }
+
+  .skeleton_img {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    z-index: 20;
+    border-radius: 100%;
+    background: linear-gradient(180deg, #b0b0b0, #d0d0d0, #b0b0b0);
+    background-size: 200% 200%;
+    animation: skeleton-rotation 1.5s linear infinite;
+  }
+
+  .skeleton_sub_card {
+    position: absolute;
+    border-radius: 10px;
+    min-height: 370px;
+    width: 100%;
+    margin-top: 100px;
+    padding: 15px;
+    padding-top: 120px;
+    background: linear-gradient(180deg, #f0f0f0, #e0e0e0, #f0f0f0);
+    background-size: 200% 200%;
+    animation: skeleton-rotation 1.5s linear infinite;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .skeleton_text {
+    height: 20px;
+    width: 80%;
+    background: linear-gradient(180deg, #d0d0d0, #e0e0e0, #d0d0d0);
+    background-size: 200% 200%;
+    animation: skeleton-rotation 1.5s linear infinite;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+
+  .skeleton_div_stats {
+    margin: 4px 0;
+    padding: 5px;
+    background: linear-gradient(180deg, #e0e0e0, #f0f0f0, #e0e0e0);
+    background-size: 200% 200%;
+    animation: skeleton-rotation 1.5s linear infinite;
+  }
+
+  .skeleton_div_type {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+
+    .skeleton_type_color {
+      border-radius: 4px;
+      height: 20px;
+      width: 50px;
+      background: linear-gradient(180deg, #d0d0d0, #f0f0f0, #d0d0d0);
+      background-size: 200% 200%;
+      animation: skeleton-rotation 1.5s linear infinite;
+      border: 1px solid #b0b0b0;
+    }
+  }
+
+  .skeleton_div_evolution {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .skeleton_item_evo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(180deg, #d0d0d0, #e0e0e0, #d0d0d0);
+      background-size: 200% 200%;
+      animation: skeleton-rotation 1.5s linear infinite;
+
+      &:hover {
+        transform: scale(1.4);
+        transition-duration: 200ms;
+      }
+    }
+  }
+}

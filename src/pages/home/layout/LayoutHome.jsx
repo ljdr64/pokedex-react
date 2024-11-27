@@ -156,6 +156,7 @@ export default function LayoutHome() {
                 card={card}
                 image={image}
                 onPokemonClick={manejarClick}
+                xpage={xpage}
               />
             );
           })}
